@@ -70,11 +70,26 @@ button:hover {
     margin: 20px 0;
 }
 
-#searchInputs {
-    display: none; /* Αρχικά κρυφά */
-}
-
 .search-title {
     text-align: center; /* Κεντράρισμα τίτλου αναζήτησης */
     margin-top: 20px;
+}
+
+.search-radio-container {
+    display: flex;
+    justify-content: space-between;
+    margin: 10px 0;
+}
+
+.search-radio-container label {
+    font-size: 14px; /* Μικρότερη γραμματοσειρά */
+    margin-right: 10px;
+}
+
+input[type="radio"] {
+    margin-right: 5px;
+}
+
+#searchInputs {
+    display: none; /* Αρχικά κρυφά */
 }
