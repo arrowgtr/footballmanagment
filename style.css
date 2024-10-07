@@ -1,41 +1,80 @@
-        body {
-            font-family: Arial, sans-serif;
-            background-color: #f4f4f4;
-            margin: 0;
-            padding: 20px;
-        }
+h1 {
+    text-align: center; /* Κεντράρισμα τίτλου */
+}
 
-         h2{text-align: center;}
-        
-        .container {
-            max-width: 400px;
-            margin: 0 auto;
-            background-color: #fff;
-            padding: 20px;
-            border-radius: 10px;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-        }
-        input[type="text"] {
-            width: 100%;
-            padding: 10px;
-            margin: 10px 0;
-            border: 1px solid #ccc;
-            border-radius: 5px;
-        }
-        button {
-            width: 100%;
-            padding: 10px;
-            background-color: #5cb85c;
-            color: white;
-            border: none;
-            border-radius: 5px;
-            cursor: pointer;
-        }
-        button:hover {
-            background-color: #4cae4c;
-        }
-        .result {
-            margin-top: 20px;
-            font-size: 18px;
-            color: #333;
-        }
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f4; /* Φόντο */
+    margin: 0;
+    padding: 20px;
+}
+
+.container {
+    max-width: 400px;
+    margin: 0 auto;
+    background-color: #fff; /* Φόντο Κουτιού */
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+input[type="text"] {
+    width: 100%;
+    padding: 10px;
+    margin: 10px 0;
+    border: 1px solid #ccc; /* Πλαίσιο Εισόδου */
+    border-radius: 5px;
+}
+
+button {
+    width: 100%;
+    padding: 10px;
+    background-color: #5cb85c; /* Χρώμα Κουμπιού */
+    color: white; /* Χρώμα Γραμματοσειράς Κουμπιού */
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: #4cae4c; /* Χρώμα Κουμπιού κατά την Εναλλαγή */
+}
+
+.result {
+    margin-top: 20px;
+    font-size: 18px;
+    color: #333; /* Χρώμα Γραμματοσειράς Αποτελεσμάτων */
+}
+
+.icon {
+    font-size: 20px; /* Μέγεθος Εικονιδίων */
+}
+
+.players-list {
+    margin-top: 10px;
+}
+
+.player-item {
+    cursor: pointer;
+    color: #007bff; /* Χρώμα Ονομάτων Παικτών */
+    text-decoration: underline;
+}
+
+.player-item:hover {
+    color: darkblue; /* Χρώμα Ονομάτων Παικτών κατά την Εναλλαγή */
+}
+
+#searchOptions {
+    display: flex;
+    justify-content: center; /* Κέντρο στοιχίσεως */
+    margin: 20px 0;
+}
+
+#searchInputs {
+    display: none; /* Αρχικά κρυφά */
+}
+
+.search-title {
+    text-align: center; /* Κεντράρισμα τίτλου αναζήτησης */
+    margin-top: 20px;
+}
