@@ -3,17 +3,17 @@
 <html lang="el">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">    <! Προσαρμογη σελιδας στην θονη του χρηστη και ζουμ ξεκιναει απο 100%>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">    
     <title>Αναζήτηση Παίκτη</title>
     <link rel="stylesheet" href="Style2.0.css">
 </head>
 <body>
     <div class="container">
-        <h1>Αναζήτηση Παίκτη\Θέσης</h1>
+        <h1>Αναζήτηση Παίκτη/Θέσης</h1>
         
-        <div id="searchOptions">
-            <button onclick="showSearch('name')">Αναζήτηση με Όνομα</button>
-            <button onclick="showSearch('position')">Αναζήτηση με Θέση</button>
+        <div id="searchOptions" class="search-radio-container">
+            <label for="searchByName"><input type="radio" id="searchByName" name="searchOption" value="name" onclick="showSearch('name')"> Αναζήτηση με Όνομα</label>
+            <label for="searchByPosition"><input type="radio" id="searchByPosition" name="searchOption" value="position" onclick="showSearch('position')"> Αναζήτηση με Θέση</label>
         </div>
 
         <div id="searchInputs">
@@ -24,8 +24,7 @@
         </div>
         
         <div class="result" id="result"></div>
-        
-
+    
         <div class="players-list" id="playersList"></div>
     </div>
           <script src="Database.js"></script>
