@@ -1,3 +1,10 @@
+document.addEventListener("DOMContentLoaded", function() {
+    document.getElementById("nameInput").addEventListener("keypress", function(event) {
+        if (event.key === "Enter") {
+            searchName(); // Καλεί τη συνάρτηση αναζήτησης
+        }
+    });
+});
 // Πίνακας με 5 ονόματα και πληροφορίες
 const people = [
     { name: "Κωνσταντίνος", κατάσταση: "Ελεύθερος", Θέση: "Δεξί Μπακ", Ομάδες: "ΠΑΟ,ΑΕΚ,ΠΑΟΚ", Γκολ: 12 },
