@@ -1,19 +1,33 @@
+
 <!DOCTYPE html>
 <html lang="el">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">    <! Προσαρμογη σελιδας στην θονη του χρηστη και ζουμ ξεκιναει απο 100%>
     <title>Αναζήτηση Παίκτη</title>
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="Style2.0.css">
 </head>
 <body>
     <div class="container">
-        <h2>Αναζήτηση Ονόματος</h2>
-        <input type="text" id="nameInput" placeholder="Εισάγετε ένα όνομα παίκτη">
-        <button onclick="searchName()">Αναζήτηση</button>
-        <div class="result" id="result"></div>
-    </div>
+        <h1>Αναζήτηση Παίκτη\Θέσης</h1>
+        
+        <div id="searchOptions">
+            <button onclick="showSearch('name')">Αναζήτηση με Όνομα</button>
+            <button onclick="showSearch('position')">Αναζήτηση με Θέση</button>
+        </div>
 
-          <script src="script.js"></script>
+        <div id="searchInputs">
+            <div class="search-title" id="searchTitle"></div>
+            <input type="text" id="nameInput" placeholder="Εισάγετε το όνομα" />
+            <input type="text" id="positionInput" placeholder="Εισάγετε τη θέση" />
+            <button id="searchButton" onclick="performSearch()">Αναζήτηση</button>
+        </div>
+        
+        <div class="result" id="result"></div>
+        
+
+        <div class="players-list" id="playersList"></div>
+    </div>
+          <script src="Database.js"></script>
 </body>
 </html>
