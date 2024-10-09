@@ -11,27 +11,70 @@
 
 <nav>
     <div class="wrapper">
-        <div class="logo"><a href="#">Logo</a></div>
+        <div class="logo"><a href="index.html"><img src="/source/logotopleft.gif" alt=""></a></div>
         <ul class="nav-links">
-            <li><a href="#">Home</a></li>
-            <li><a href="#">Επικοινωνία</a></li>
+            <li><a href="index.html">Home</a></li>
+            <li><button class="support-button" onclick="openPopup()">Επικοινωνία</button></li>
             <li>
                 <a href="#" class="desktop-item">Θέση</a>
                 <input type="checkbox" id="showDrop">
-                <label for="showDrop" class="mobile-item">Θέση</label>
+                <label for="showDrop" class="mobile-item">Dropdown Menu</label>
                 <ul class="drop-menu">
-                    <li><a href="#">Τ/Φ</a></li>
-                    <li><a href="#">Αμυντικός</a></li>
-                
-                    <li><a href="#">Κεντρικός Μέσος</a></li>
-                    <li><a href="#">Επιθετικός</a></li>
+                    <li>
+                        <a href="#">Τ/Φ</a>
+                    </li>
+                    <li>
+                        <a href="#">Αμυντικός</a>
+                        <ul class="sub-menu">
+                            <li><a href="#">1</a></li>
+                            <li><a href="#">2</a></li>
+                            <li><a href="#">3</a></li>
+                            <li><a href="#">4</a></li>
+                        </ul>
+                    </li>
+                    <li>
+                        <a href="#">Κεντρικός Μέσος</a>
+                        <ul class="sub-menu">
+                            <li><a href="#">1</a></li>
+                            <li><a href="#">2</a></li>
+                            <li><a href="#">3</a></li>
+                            <li><a href="#">4</a></li>
+                        </ul>
+                    </li>
+                    <li>
+                        <a href="#">Επιθετικός</a>
+                        <ul class="sub-menu">
+                            <li><a href="#">1</a></li>
+                            <li><a href="#">2</a></li>
+                            <li><a href="#">3</a></li>
+                            <li><a href="#">4</a></li>
+                        </ul>
+                    </li>
                 </ul>
+                
             </li>
             <li><a href="#" id="searchButton"><span class="icon-before">🔍</span>Αναζήτηση</a></li>
         </ul>
     </div>
 </nav>
 
+
+<div class="overlay" id="popupOverlay"></div>
+<div class="contactuspopup" id="contactuspopup">
+    <button class="close-btn" onclick="closecontactusPopup()"><i class="fas fa-times"></i> </button>
+<h2>Επικοινωνήστε μαζί μας</h2>
+
+<!-- Email Link -->
+<p><span class="icon">📧</span>
+    <a href="mailto:argirispapako@gmail.com">argirispapako@gmail.com</a>
+</p>
+
+<!-- Phone Link -->
+<p><span class="icon">📞</span>
+    <a href="tel:+306987313267">6987313267</a>
+</p>
+
+</div>
 
 <div id="searchPopup">
     <h3>Αναζήτηση Παίκτη</h3>
