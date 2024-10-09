@@ -1,131 +1,121 @@
-// Πίνακας με 5 ονόματα και πληροφορίες
-        const people = [
-            { name: "Κωνσταντίνος", BirthY: 2003, Θέση: "Δεξί Μπακ", Ομάδες: "ΠΑΟ, ΑΕΚ, ΠΑΟΚ" },
-            { name: "Μάριος", BirthY: 2009, Θέση: "Αριστερό Εξτρέμ", Ομάδες: "ΟΣΦΠ, ΠΑΟΚ" },
-            { name: "Νίκος", BirthY: 1999, Θέση: "Σέντερ Φορ", Ομάδες: "ΑΕΚ" },
-            { name: "Άγγελος", BirthY: 1990, Θέση: "Αμυντικό Χαφ", Ομάδες: "ΠΑΟΚ, ΠΑΟ" },
-            { name: "Δημήτρης", BirthY: 2001, Θέση: "Σέντερ Μπακ", Ομάδες: "ΟΣΦΠ" }
-        ];
 
-        // Συνάρτηση για μετατροπή από ελληνικούς χαρακτήρες σε λατινικούς
-        function greekToLatin(str) {
-            const greekToLatinMap = {
-                'Α': 'A', 'Β': 'B', 'Γ': 'G', 'Δ': 'D', 'Ε': 'E', 'Ζ': 'Z', 'Η': 'H', 'Θ': 'TH', 'Ι': 'I', 'Κ': 'K', 'Λ': 'L',
-                'Μ': 'M', 'Ν': 'N', 'Ξ': 'KS', 'Ο': 'O', 'Π': 'P', 'Ρ': 'R', 'Σ': 'S', 'Τ': 'T', 'Υ': 'Y', 'Φ': 'F', 'Χ': 'CH',
-                'Ψ': 'PS', 'Ω': 'O', 'ά': 'a', 'έ': 'e', 'ή': 'i', 'ί': 'i', 'ό': 'o', 'ύ': 'y', 'ώ': 'o',
-                'α': 'a', 'β': 'b', 'γ': 'g', 'δ': 'd', 'ε': 'e', 'ζ': 'z', 'η': 'i', 'θ': 'th', 'ι': 'i', 'κ': 'k', 'λ': 'l',
-                'μ': 'm', 'ν': 'n', 'ξ': 'ks', 'ο': 'o', 'π': 'p', 'ρ': 'r', 'σ': 's', 'τ': 't', 'υ': 'y', 'φ': 'f', 'χ': 'ch',
-                'ψ': 'ps', 'ω': 'o', 'σ': 'ς'
+const players = [
+    { name: "Κωνσταντίνος", BirthY: 2003, Θέση: "Δεξί Μπακ", Ομάδες: "ΠΑΟ, ΑΕΚ, ΠΑΟΚ" },
+    { name: "Μάριος", BirthY: 2009, Θέση: "Αριστερό Εξτρέμ", Ομάδες: "ΟΣΦΠ, ΠΑΟΚ" },
+    { name: "Νίκος", BirthY: 1999, Θέση: "Σέντερ Φορ", Ομάδες: "ΑΕΚ" },
+    { name: "Άγγελος", BirthY: 1990, Θέση: "Αμυντικό Χαφ", Ομάδες: "ΠΑΟΚ, ΠΑΟ" },
+    { name: "Δημήτρης", BirthY: 2001, Θέση: "Σέντερ Μπακ", Ομάδες: "ΟΣΦΠ" },
+    { name: "Γιάννης", BirthY: 1995, Θέση: "Επιθετικός", Ομάδες: "ΟΣΦΠ" },
+    { name: "Σταύρος", BirthY: 1997, Θέση: "Μέσος", Ομάδες: "ΠΑΟΚ" },
+    { name: "Μιχάλης", BirthY: 1985, Θέση: "Τερματοφύλακας", Ομάδες: "ΑΕΚ" },
+    { name: "Στέλιος", BirthY: 1993, Θέση: "Μέσος", Ομάδες: "ΟΣΦΠ" },
+    { name: "Βασίλης", BirthY: 1998, Θέση: "Αμυντικός", Ομάδες: "ΠΑΟ" },
+    { name: "Αλέξανδρος", BirthY: 2000, Θέση: "Αριστερό Μπακ", Ομάδες: "ΑΕΚ" },
+    { name: "Διονύσης", BirthY: 2002, Θέση: "Σέντερ Φορ", Ομάδες: "ΠΑΟΚ" },
+    { name: "Κωνσταντίνος", BirthY: 2004, Θέση: "Επιθετικός", Ομάδες: "ΠΑΟ" },
+];
+
+
+let currentPage = 1;
+const playersPerPage = 10;
+
+
+function closeSearchPopup() {
+    document.getElementById('searchPopup').style.display = 'none';
+}
+
+
+document.getElementById('searchButton').addEventListener('click', function () {
+    document.getElementById('searchPopup').style.display = 'block';
+    document.getElementById('playersList').innerHTML = ''; // Clear previous results
+    document.getElementById('result').innerHTML = ''; // Clear previous result
+    currentPage = 1; 
+});
+
+
+document.addEventListener('keydown', function (event) {
+    if (event.key === 'Escape') {
+        closeSearchPopup();
+    }
+});
+
+
+window.addEventListener('click', function (event) {
+    const popup = document.getElementById('searchPopup');
+    if (popup.style.display === 'block' && !popup.contains(event.target) && !document.getElementById('searchButton').contains(event.target)) {
+        closeSearchPopup();
+    }
+});
+
+
+document.getElementById('playerSearchInput').addEventListener('input', function () {
+    const searchTerm = this.value.toLowerCase();
+    const filteredPlayers = players.filter(p => p.name.toLowerCase().includes(searchTerm));
+    displayFilteredPlayers(filteredPlayers);
+});
+
+
+function displayFilteredPlayers(filteredPlayers) {
+    const playersListDiv = document.getElementById("playersList");
+    playersListDiv.innerHTML = ''; 
+    const totalPages = Math.ceil(filteredPlayers.length / playersPerPage);
+    
+
+    updatePagination(filteredPlayers.length, totalPages);
+
+
+    const startIndex = (currentPage - 1) * playersPerPage;
+    const endIndex = Math.min(startIndex + playersPerPage, filteredPlayers.length);
+    const playersToDisplay = filteredPlayers.slice(startIndex, endIndex);
+
+    if (playersToDisplay.length > 0) {
+        playersToDisplay.forEach(player => {
+            const playerItem = document.createElement('div');
+            playerItem.className = 'player-item';
+            playerItem.textContent = player.name;
+
+            playerItem.onclick = () => {
+                const isBirthYGreaterThan2003 = player.BirthY > 2003 ? "✔️" : "❌";
+                document.getElementById("result").innerHTML = `
+                    <p>Το όνομα <strong>"${player.name}"</strong> βρέθηκε</p>
+                    <p>Ηλικία: ${new Date().getFullYear() - player.BirthY}</p>
+                    <p>Θέση: ${player.Θέση}</p>
+                    <p>Ομάδες: ${player.Ομάδες}</p>
+                    <p>Έτος γέννησης > 2003: ${isBirthYGreaterThan2003}</p>
+                `;
             };
 
-            return str.split('').map(char => greekToLatinMap[char] || char).join('');
-        }
-
-        // Συνάρτηση για την εμφάνιση της αντίστοιχης μπάρας αναζήτησης
-        function showSearch(type) {
-            const searchInputsDiv = document.getElementById("searchInputs");
-            const searchTitle = document.getElementById("searchTitle");
-            const nameInput = document.getElementById("nameInput");
-            const positionInput = document.getElementById("positionInput");
-            const resultDiv = document.getElementById("result");
-            const playersListDiv = document.getElementById("playersList");
-
-            // Επαναφορά πριν από την επιλογή
-            searchInputsDiv.style.display = 'block';
-            nameInput.value = ''; // Καθαρισμός του πεδίου ονόματος
-            positionInput.value = ''; // Καθαρισμός του πεδίου θέσης
-            resultDiv.innerHTML = ''; // Καθαρισμός των αποτελεσμάτων
-            playersListDiv.innerHTML = ''; // Καθαρισμός λίστας παικτών
-            nameInput.style.display = 'none';
-            positionInput.style.display = 'none';
-
-            if (type === 'name') {
-                searchTitle.textContent = "Αναζητήστε με Όνομα";
-                nameInput.style.display = 'block';
-                nameInput.focus(); // Τοποθέτηση του κέρσορα στο πεδίο ονόματος
-            } else if (type === 'position') {
-                searchTitle.textContent = "Αναζητήστε με Θέση";
-                positionInput.style.display = 'block';
-                positionInput.focus(); // Τοποθέτηση του κέρσορα στο πεδίο θέσης
-            }
-        }
-
-        // Συνάρτηση για την αναζήτηση
-        function performSearch() {
-            const nameInput = document.getElementById("nameInput").value.trim().toLowerCase();
-            const positionInput = document.getElementById("positionInput").value.trim().toLowerCase();
-            const resultDiv = document.getElementById("result");
-            const playersListDiv = document.getElementById("playersList");
-
-            if (nameInput) {
-                searchByName(); // Αναζήτηση με βάση το όνομα
-            } else if (positionInput) {
-                searchByPosition(); // Αναζήτηση με βάση τη θέση
-            }
-        }
-
-        // Συνάρτηση για την αναζήτηση με βάση το όνομα
-        function searchByName() {
-            const inputName = document.getElementById("nameInput").value.trim().toLowerCase();
-            const resultDiv = document.getElementById("result");
-            const normalizedInputName = greekToLatin(inputName);
-
-            const person = people.find(p => greekToLatin(p.name.toLowerCase()) === normalizedInputName);
-            if (person) {
-                const isBirthYGreaterThan2003 = person.BirthY > 2003 ? "✔️" : "❌";
-                resultDiv.innerHTML = `
-                    <p>Το όνομα <strong>"${person.name}"</strong> βρέθηκε</p>
-                    <p>Ηλικία: ${new Date().getFullYear() - person.BirthY}</p>
-                    <p>Θέση: ${person.Θέση}</p>
-                    <p>Ομάδες: ${person.Ομάδες}</p>
-                    <p>Είναι μεγαλύτερος του 2003: <span class="icon">${isBirthYGreaterThan2003}</span></p>
-                `;
-                resultDiv.style.color = "green";
-            } else {
-                resultDiv.textContent = `Το όνομα "${inputName}" δεν βρέθηκε. Προσπαθήστε ξανά.`;
-                resultDiv.style.color = "red";
-            }
-        }
-
-        // Συνάρτηση για την αναζήτηση με βάση τη θέση
-        function searchByPosition() {
-            const inputPosition = document.getElementById("positionInput").value.trim().toLowerCase();
-            const playersListDiv = document.getElementById("playersList");
-            const normalizedInputPosition = greekToLatin(inputPosition);
-
-            playersListDiv.innerHTML = '';
-
-            const filteredPlayers = people.filter(p => greekToLatin(p.Θέση.toLowerCase()).includes(normalizedInputPosition));
-
-            if (filteredPlayers.length > 0) {
-                filteredPlayers.forEach(player => {
-                    const playerItem = document.createElement('div');
-                    playerItem.className = 'player-item';
-                    playerItem.textContent = player.name;
-
-                    playerItem.onclick = () => {
-                        const isBirthYGreaterThan2003 = player.BirthY > 2003 ? "✔️" : "❌";
-                        document.getElementById("result").innerHTML = `
-                            <p>Το όνομα <strong>"${player.name}"</strong> βρέθηκε</p>
-                            <p>Ηλικία: ${new Date().getFullYear() - player.BirthY}</p>
-                            <p>Θέση: ${player.Θέση}</p>
-                            <p>Ομάδες: ${player.Ομάδες}</p>
-                            <p>Είναι μεγαλύτερος του 2003: <span class="icon">${isBirthYGreaterThan2003}</span></p>
-                        `;
-                        document.getElementById("result").style.color = "green";
-                    };
-
-                    playersListDiv.appendChild(playerItem);
-                });
-            } else {
-                playersListDiv.textContent = `Δεν βρέθηκαν παίκτες με θέση "${inputPosition}".`;
-                playersListDiv.style.color = "red";
-            }
-        }
-
-        // Προσθήκη υποστήριξης για πάτημα του πλήκτρου Enter
-        document.addEventListener('keydown', function (event) {
-            if (event.key === 'Enter') {
-                performSearch();
-            }
+            playersListDiv.appendChild(playerItem);
         });
+    } else {
+        playersListDiv.innerHTML = '<p>Δεν βρέθηκαν παίκτες.</p>';
+    }
+}
+
+
+function updatePagination(totalPlayers, totalPages) {
+    const prevButton = document.getElementById('prevPage');
+    const nextButton = document.getElementById('nextPage');
+    const pageInfo = document.getElementById('pageInfo');
+
+    pageInfo.innerText = `Σελίδα ${currentPage} από ${totalPages}`;
+    
+
+    prevButton.style.display = currentPage > 1 ? 'inline' : 'none';
+    nextButton.style.display = currentPage < totalPages ? 'inline' : 'none';
+
+  
+    prevButton.onclick = () => {
+        if (currentPage > 1) {
+            currentPage--;
+            displayFilteredPlayers(players.filter(p => p.name.toLowerCase().includes(document.getElementById('playerSearchInput').value.toLowerCase())));
+        }
+    };
+
+    nextButton.onclick = () => {
+        if (currentPage < totalPages) {
+            currentPage++;
+            displayFilteredPlayers(players.filter(p => p.name.toLowerCase().includes(document.getElementById('playerSearchInput').value.toLowerCase())));
+        }
+    };
+}
