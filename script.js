@@ -33,11 +33,6 @@ document.getElementById('searchButton').addEventListener('click', function () {
 });
 
 
-document.addEventListener('keydown', function (event) {
-    if (event.key === 'Escape') {
-        closeSearchPopup();
-    }
-});
 
 
 window.addEventListener('click', function (event) {
@@ -119,3 +114,44 @@ function updatePagination(totalPlayers, totalPages) {
         }
     };
 }
+
+
+ // Function to open the popup
+ function openPopup() {
+    document.getElementById("contactuspopup").style.display = "block";
+    document.getElementById("popupOverlay").style.display = "block";
+}
+
+// Function to close the popup
+function closecontactusPopup() {
+    document.getElementById("contactuspopup").style.display = "none";
+    document.getElementById("popupOverlay").style.display = "none";
+}
+
+
+
+// Πατα το Escape για να κλεισει το popup
+document.addEventListener('keydown', function (event) {
+    if (event.key === 'Escape') {
+        //  search popup 
+        if (document.getElementById('searchPopup').style.display === 'block') {
+            closeSearchPopup();
+        }
+        // contact us  popup
+        if (document.getElementById('contactuspopup').style.display === 'block') {
+            closecontactusPopup();
+        }
+    }
+});
+
+
+
+
+
+
+window.addEventListener('click', function (event) {
+    const popup = document.getElementById('contactuspopup');
+    if (popup.style.display === 'block' && !popup.contains(event.target) && !document.getElementById('contactus-button').contains(event.target)) {
+        closecontactusPopup();
+    }
+});
