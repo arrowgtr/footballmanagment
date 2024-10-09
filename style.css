@@ -577,12 +577,12 @@ nav input {
 }
 
 .drop-menu > li:hover .sub-menu {
-  display: block; /* Show sub-menu on hover */
+  display: block; 
 }
 
 .sub-menu li a {
   display: block;
   padding: 10px;
-  color: #ffffff; /* Color for sub-menu links */
+  color: #ffffff; 
   text-decoration: none;
 }
