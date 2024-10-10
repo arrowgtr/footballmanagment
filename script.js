@@ -132,4 +132,21 @@ function updatePagination(totalPlayers, totalPages) {
             ));
         }
     };
+
+    document.getElementById('defender').addEventListener('click', function() {
+        const subMenu = document.getElementById('defenderOptions');
+        subMenu.classList.toggle('show');
+    });
+
+    // Εμφάνιση/απόκρυψη της υποκατηγορίας Κεντρικού Μέσου
+    document.getElementById('midfielder').addEventListener('click', function() {
+        const subMenu = document.getElementById('midfielderOptions');
+        subMenu.classList.toggle('show');
+    });
+
+    // Εμφάνιση/απόκρυψη της υποκατηγορίας Επιθετικού
+    document.getElementById('forward').addEventListener('click', function() {
+        const subMenu = document.getElementById('forwardOptions');
+        subMenu.classList.toggle('show');
+    });
 }
