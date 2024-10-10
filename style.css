@@ -552,22 +552,24 @@ nav input {
 
 .drop-menu {
   list-style: none;
+  text-align: center;
   padding: 0;
 }
 
 .drop-menu > li {
   position: relative;
+  text-align: center;
 }
 
-
-
 .drop-menu > li > a:hover {
-  background-color: #0056b3; 
+  background-color: #0056b3;
+  text-align: center; 
 }
 
 .sub-menu {
   display: none; 
-  position: absolute; 
+  position: absolute;
+  text-align: left; 
   top: 0%; 
   left:80%;
   color: #ffffff;
@@ -578,11 +580,24 @@ nav input {
 
 .drop-menu > li:hover .sub-menu {
   display: block; 
+  text-align: left;
 }
 
-.sub-menu li a {
+
+
+.sub-menu > li a {
   display: block;
+  text-align: left;
   padding: 10px;
   color: #ffffff; 
   text-decoration: none;
 }
+
+.sub-menu {
+            display: none; 
+            list-style-type: none;
+            padding: 0;
+        }
+        .show {
+            display: block; 
+        }
