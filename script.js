@@ -31,12 +31,30 @@ function closeSearchPopup() {
     document.getElementById('searchPopup').style.display = 'none';
 }
 
+// Άνοιγμα του popup επικοινωνίας
+function openPopup() {
+    document.getElementById('popupOverlay').style.display = 'block'; // Εμφάνιση overlay
+    document.getElementById('contactuspopup').style.display = 'block'; // Εμφάνιση popup
+}
+
+// Κλείσιμο του popup επικοινωνίας
+function closecontactusPopup() {
+    document.getElementById('popupOverlay').style.display = 'none'; // Απόκρυψη overlay
+    document.getElementById('contactuspopup').style.display = 'none'; // Απόκρυψη popup
+}
+
+// Κλείσιμο του popup όταν κάνεις κλικ στο overlay
+document.getElementById('popupOverlay').addEventListener('click', closecontactusPopup);
+
 document.getElementById('searchButton').addEventListener('click', function () {
     document.getElementById('searchPopup').style.display = 'block';
     document.getElementById('playersList').innerHTML = ''; // Clear previous results
     document.getElementById('result').innerHTML = ''; // Clear previous result
     currentPage = 1;
 });
+
+// Προσθήκη event listener για το κουμπί επικοινωνίας
+document.querySelector('.support-button').addEventListener('click', openPopup);
 
 // Αρχικά άδεια η λίστα των παικτών
 document.addEventListener('DOMContentLoaded', function () {
