@@ -6,6 +6,16 @@
     <title>Αναζήτηση Ποδοσφαιριστών</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <link rel="stylesheet" href="style.css">
+    <style>
+        .sub-menu {
+            display: none; /* Αρχικά κρύβουμε τη υποκατηγορία */
+            list-style-type: none;
+            padding: 0;
+        }
+        .show {
+            display: block; /* Εμφανίζουμε τη υποκατηγορία όταν απαιτείται */
+        }
+    </style>
 </head>
 <body>
 
@@ -21,59 +31,53 @@
                 <label for="showDrop" class="mobile-item">Dropdown Menu</label>
                 <ul class="drop-menu">
                     <li>
-                        <a href="#">Τ/Φ</a>
+                        <a href="#">Τερματοφύλακας</a>
                     </li>
                     <li>
-                        <a href="#">Αμυντικός</a>
-                        <ul class="sub-menu">
-                            <li><a href="#">1</a></li>
-                            <li><a href="#">2</a></li>
-                            <li><a href="#">3</a></li>
-                            <li><a href="#">4</a></li>
+                        <a href="#" id="defender">Αμυντικός</a>
+                        <ul class="sub-menu" id="defenderOptions">
+                            <li><a href="#">Κεντρικός Αμυντικός</a></li>
+                            <li><a href="#">Δεξί Μπακ</a></li>
+                            <li><a href="#">Αριστερό Μπακ</a></li>
                         </ul>
                     </li>
                     <li>
-                        <a href="#">Κεντρικός Μέσος</a>
-                        <ul class="sub-menu">
-                            <li><a href="#">1</a></li>
-                            <li><a href="#">2</a></li>
-                            <li><a href="#">3</a></li>
-                            <li><a href="#">4</a></li>
+                        <a href="#" id="midfielder">Κεντρικός Μέσος</a>
+                        <ul class="sub-menu" id="midfielderOptions">
+                            <li><a href="#">Αμυντικό Χαφ </a></li>
+                            <li><a href="#">8αρι </a></li>
+                            <li><a href="#">10άρι</a></li>
                         </ul>
                     </li>
                     <li>
-                        <a href="#">Επιθετικός</a>
-                        <ul class="sub-menu">
-                            <li><a href="#">1</a></li>
-                            <li><a href="#">2</a></li>
-                            <li><a href="#">3</a></li>
-                            <li><a href="#">4</a></li>
+                        <a href="#" id="forward">Επιθετικός</a>
+                        <ul class="sub-menu" id="forwardOptions">
+                            <li><a href="#">Κεντρικός Επιθετικός</a></li>
+                            <li><a href="#">Αριστερός Εξτρέμ</a></li>
+                            <li><a href="#">Δεξιός Εξτρέμ</a></li>
                         </ul>
                     </li>
                 </ul>
-                
             </li>
             <li><a href="#" id="searchButton"><span class="icon-before">🔍</span>Αναζήτηση</a></li>
         </ul>
     </div>
 </nav>
 
-
 <div class="overlay" id="popupOverlay"></div>
 <div class="contactuspopup" id="contactuspopup">
     <button class="close-btn" onclick="closecontactusPopup()"><i class="fas fa-times"></i> </button>
-<h2>Επικοινωνήστε μαζί μας</h2>
+    <h2>Επικοινωνήστε μαζί μας</h2>
 
-<!-- Email Link -->
-<p><span class="icon">📧</span>
-    <a href="mailto:argirispapako@gmail.com">argirispapako@gmail.com</a>
-</p>
+    <!-- Email Link -->
+    <p><span class="icon">📧</span>
+        <a href="mailto:argirispapako@gmail.com">argirispapako@gmail.com</a>
+    </p>
 
-<!-- Phone Link -->
-<p><span class="icon">📞</span>
-    <a href="tel:+306987313267">6987313267</a>
-</p>
-
+    <!-- Phone Link -->
+    <p><span class="icon">📞</span>
+        <a href="tel:+306987313267">6987313267</a>
+    </p>
 </div>
 
 <div id="searchPopup">
@@ -82,13 +86,10 @@
         <input type="text" id="playerSearchInput" placeholder="🔍 Αναζήτηση με Όνομα">
     </div>
 
-
     <div id="playersList"></div>
-
 
     <div id="result"></div>
 
-  
     <div id="pagination">
         <button id="prevPage" style="display:none;">Προηγούμενοι</button>
         <span id="pageInfo"></span>
