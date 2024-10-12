@@ -1,18 +1,13 @@
-const players = [
-    { name: "Κωνσταντίνος", surname: "Παπαδόπουλος", BirthY: 2003, Θέση: "Δεξί Μπακ", Ομάδες: "ΠΑΟ, ΑΕΚ, ΠΑΟΚ" },
-    { name: "Μάριος", surname: "Αναστασίου", BirthY: 2009, Θέση: "Αριστερό Εξτρέμ", Ομάδες: "ΟΣΦΠ, ΠΑΟΚ" },
-    { name: "Νίκος", surname: "Κωνσταντίνου", BirthY: 1999, Θέση: "Σέντερ Φορ", Ομάδες: "ΑΕΚ" },
-    { name: "Άγγελος", surname: "Μαυρίδης", BirthY: 1990, Θέση: "Αμυντικό Χαφ", Ομάδες: "ΠΑΟΚ, ΠΑΟ" },
-    { name: "Δημήτρης", surname: "Γεωργίου", BirthY: 2001, Θέση: "Σέντερ Μπακ", Ομάδες: "ΟΣΦΠ" },
-    { name: "Γιάννης", surname: "Καραγιάννης", BirthY: 1995, Θέση: "Επιθετικός", Ομάδες: "ΟΣΦΠ" },
-    { name: "Σταύρος", surname: "Δημητρίου", BirthY: 1997, Θέση: "Μέσος", Ομάδες: "ΠΑΟΚ" },
-    { name: "Μιχάλης", surname: "Νικολάου", BirthY: 1985, Θέση: "Τερματοφύλακας", Ομάδες: "ΑΕΚ" },
-    { name: "Στέλιος", surname: "Φωτίου", BirthY: 1993, Θέση: "Μέσος", Ομάδες: "ΟΣΦΠ" },
-    { name: "Βασίλης", surname: "Χριστοδούλου", BirthY: 1998, Θέση: "Αμυντικός", Ομάδες: "ΠΑΟ" },
-    { name: "Αλέξανδρος", surname: "Τσαγγάρης", BirthY: 2000, Θέση: "Αριστερό Μπακ", Ομάδες: "ΑΕΚ" },
-    { name: "Διονύσης", surname: "Κατσούλης", BirthY: 2002, Θέση: "Σέντερ Φορ", Ομάδες: "ΠΑΟΚ" },
-    { name: "Κωνσταντίνος", surname: "Σαμαράς", BirthY: 2004, Θέση: "Επιθετικός", Ομάδες: "ΠΑΟ" },
-];
+let players = []; // Δημιουργία άδειου πίνακα για τους παίκτες
+
+// Λήψη δεδομένων παικτών από το PHP script
+fetch('fetch_players.php')
+    .then(response => response.json())
+    .then(data => {
+        players = data;
+        console.log(players); // Πρόσθεσε αυτό το line
+    })
+    .catch(error => console.error('Σφάλμα:', error));
 
 // Συνάρτηση για αφαίρεση τόνων και μετατροπή σε πεζά
 function removeTonos(str) {
@@ -25,7 +20,7 @@ function normalizeGreekString(str) {
 }
 
 let currentPage = 1;
-const playersPerPage = 10;
+const playersPerPage = 20;
 
 function closeSearchPopup() {
     document.getElementById('searchPopup').style.display = 'none';
@@ -70,19 +65,36 @@ window.addEventListener('click', function (event) {
 
 // Κατά την εισαγωγή στο πεδίο αναζήτησης
 document.getElementById('playerSearchInput').addEventListener('input', function () {
-    const searchTerm = normalizeGreekString(this.value); // Κανονικοποίηση αναζήτησης (πεζά και χωρίς τόνους)
+    const searchTerm = this.value.trim();
     
-    if (searchTerm.length > 0) { // Μόνο όταν ο χρήστης εισάγει κάτι
-        const filteredPlayers = players.filter(p => 
-            normalizeGreekString(p.name).includes(searchTerm) || 
-            normalizeGreekString(p.surname).includes(searchTerm)
-        ); // Κανονικοποίηση και των ονομάτων και των επωνύμων
+    if (searchTerm.length > 0) { 
+        const filteredPlayers = filterPlayersByCriteria(searchTerm);
         displayFilteredPlayers(filteredPlayers);
     } else {
-        document.getElementById('playersList').innerHTML = ''; // Αν το πεδίο αναζήτησης είναι κενό, η λίστα παραμένει κενή
-        document.getElementById('result').innerHTML = ''; // Διαγραφή στοιχείων παίκτη
+        document.getElementById('playersList').innerHTML = ''; 
+        document.getElementById('result').innerHTML = ''; 
     }
 });
+
+// Συνάρτηση για φιλτράρισμα παικτών με βάση τα κριτήρια (όνομα, επώνυμο, θέση, ηλικία)
+function filterPlayersByCriteria(searchTerm) {
+    // Διαχωρισμός του όρου αναζήτησης σε μέρη
+    const terms = searchTerm.split(' ').map(t => normalizeGreekString(t));
+
+    return players.filter(player => {
+        const playerName = normalizeGreekString(player.name);
+        const playerSurname = normalizeGreekString(player.surname);
+        const playerPosition = normalizeGreekString(player.Θέση);
+        const playerAge = new Date().getFullYear() - player.BirthY;
+
+        return terms.every(term => 
+            playerName.includes(term) ||
+            playerSurname.includes(term) ||
+            playerPosition.includes(term) ||
+            (term.match(/^\d+$/) && playerAge == term) // Έλεγχος για αριθμό ηλικίας
+        );
+    });
+}
 
 function displayFilteredPlayers(filteredPlayers) {
     const playersListDiv = document.getElementById("playersList");
@@ -150,21 +162,22 @@ function updatePagination(totalPlayers, totalPages) {
             ));
         }
     };
-
-    document.getElementById('defender').addEventListener('click', function() {
-        const subMenu = document.getElementById('defenderOptions');
-        subMenu.classList.toggle('show');
-    });
-
-    // Εμφάνιση/απόκρυψη της υποκατηγορίας Κεντρικού Μέσου
-    document.getElementById('midfielder').addEventListener('click', function() {
-        const subMenu = document.getElementById('midfielderOptions');
-        subMenu.classList.toggle('show');
-    });
-
-    // Εμφάνιση/απόκρυψη της υποκατηγορίας Επιθετικού
-    document.getElementById('forward').addEventListener('click', function() {
-        const subMenu = document.getElementById('forwardOptions');
-        subMenu.classList.toggle('show');
-    });
 }
+
+// Εμφάνιση/απόκρυψη της υποκατηγορίας Αμυντικού
+document.getElementById('defender').addEventListener('click', function() {
+    const subMenu = document.getElementById('defenderOptions');
+    subMenu.classList.toggle('show');
+});
+
+// Εμφάνιση/απόκρυψη της υποκατηγορίας Κεντρικού Μέσου
+document.getElementById('midfielder').addEventListener('click', function() {
+    const subMenu = document.getElementById('midfielderOptions');
+    subMenu.classList.toggle('show');
+});
+
+// Εμφάνιση/απόκρυψη της υποκατηγορίας Επιθετικού
+document.getElementById('forward').addEventListener('click', function() {
+    const subMenu = document.getElementById('forwardOptions');
+    subMenu.classList.toggle('show');
+});
